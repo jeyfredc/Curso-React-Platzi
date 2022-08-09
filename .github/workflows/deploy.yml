@@ -1,0 +1,19 @@
+name: Build and Deploy  #Nombre del trabajo que se va a ejecutar
+on: [push] # Pregunta donde, en este caso cuando se haga un push
+jobs: #Luego se ejecutan las tareas
+  build-and-deploy:
+    runs-on: ubuntu-latest # El despliegue a producción se hara sobre un servidor ubuntu que ya se encuentra estable 
+    steps: # Luego estan los pasos para desplegar 
+      - name: Checkout 🛎️ #Es como indicar donde estoy y donde voy a preparar la instancia para inicializar el servicio
+        uses: actions/checkout@v3
+
+      - name: Install and Build 🔧 # Otro paso es instalar dependencias y luego desplegar, son comandos que se ejecutaran como tal en el servidor
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # Sera donde se creara la rama y el recurso donde se expondra la web, es decir que el repositorio estara pendiente de los cambios que se agreguen a esta rama
+          folder: build # The folder the action should deploy.
