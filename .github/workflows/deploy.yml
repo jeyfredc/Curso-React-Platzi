@@ -16,4 +16,4 @@ jobs: #Luego se ejecutan las tareas
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # Sera donde se creara la rama y el recurso donde se expondra la web, es decir que el repositorio estara pendiente de los cambios que se agreguen a esta rama
-          folder: build # The folder the action should deploy.
+          folder: dist # La carpeta donde se ejecutara la accion
